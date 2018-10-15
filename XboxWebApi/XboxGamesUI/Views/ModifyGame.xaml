@@ -1,0 +1,51 @@
+﻿<Window x:Class="XboxGamesUI.Views.ModifyGame"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:XboxGamesUI.Views"
+        xmlns:helpers="clr-namespace:XboxGamesUI.Helpers"
+        mc:Ignorable="d"
+        Title="{Binding Source={x:Static helpers:DisplayStrings.ModifyWindow}}" Height="400" Width="550">
+    <Grid>
+
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                    <Setter Property="Width" Value="100"></Setter>
+                    <Setter Property="VerticalAlignment" Value="Top"></Setter>
+                </Style>
+
+                <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                    <Setter Property="Width" Value="400"></Setter>
+                </Style>
+
+            </Grid.Resources>
+
+            <DockPanel HorizontalAlignment="Center">
+
+                <Label DockPanel.Dock="Top" ToolTipService.InitialShowDelay="0" Style="{StaticResource lblUserMsg}" ToolTip="{Binding UsrMsg, Mode=OneWay}" Content="{Binding UsrMsg, Mode=OneWay}"></Label>
+
+                <DockPanel DockPanel.Dock="Top">
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Label Content="Game"></Label>
+                        <TextBox IsEnabled="{Binding AllowTitleEdit,Mode=OneTime}" Text="{Binding Game.Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+                    </StackPanel>
+
+                    <StackPanel Margin="0,20,0,0" DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Label Content="Description"></Label>
+                        <TextBox  MinHeight="150" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Text="{Binding Game.Desc,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+                    </StackPanel>
+                </DockPanel>
+
+                <Button DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Right" Height="25" Width="50" x:Name="btnApply" Content="Save" Command="{Binding SaveCommand}"></Button>
+
+            </DockPanel>
+
+
+
+        </Grid>
+
+    </Grid>
+</Window>

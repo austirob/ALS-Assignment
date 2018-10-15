@@ -1,0 +1,53 @@
+﻿<Window x:Class="XboxGamesUI.Views.Ratings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:XboxGamesUI.Views"
+        xmlns:helpers="clr-namespace:XboxGamesUI.Helpers"
+        mc:Ignorable="d"
+        Icon="../Assets/Images/Star.png"
+        Title="{Binding Source={x:Static helpers:DisplayStrings.RatingWindow}}" Height="400" Width="500">
+
+    <Grid>
+       <Grid.Resources>
+           <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                <Setter Property="Width" Value="100"></Setter>
+                <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            </Style>
+
+         
+        </Grid.Resources>
+
+        <DockPanel HorizontalAlignment="Center">
+
+            <Label Style="{StaticResource lblUserMsg}" DockPanel.Dock="Top"  ToolTip="{Binding UsrMsg, Mode=OneWay}" Content="{Binding UsrMsg, Mode=OneWay}"></Label>
+
+            <DockPanel DockPanel.Dock="Top">
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Label Content="Game"></Label>
+                    <TextBox IsEnabled="False" Width ="350"  Text="{Binding Game.Title,Mode=OneWay}"></TextBox>
+                 </StackPanel>
+
+                <StackPanel Margin="0,20,0,0"  DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Label Content="Description"></Label>
+                    <TextBox TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Width="350" Height="200" IsEnabled="False" Text="{Binding Game.Desc,Mode=OneWay}" ></TextBox>
+                   
+                </StackPanel>
+
+                <StackPanel Margin="0,20,0,0" DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Label VerticalAlignment="Top" Content="Select Rating"></Label>
+                    <ComboBox VerticalAlignment="Top" ItemsSource="{Binding Ratings,Mode=OneWay}" SelectedItem="{Binding SelectedRating,Mode=TwoWay}"></ComboBox>
+                    <Button  VerticalAlignment="Top" Margin="20,0,0,0"  Width="75" x:Name="btnApply" Content="Submit" Command="{Binding SubmitRatingCommand}"></Button>
+
+                </StackPanel>
+
+           </DockPanel>
+
+            
+        </DockPanel>
+
+      
+       
+    </Grid>
+</Window>
